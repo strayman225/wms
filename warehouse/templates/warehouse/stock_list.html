@@ -1,0 +1,7 @@
+<!-- templates/warehouse/stock_list.html -->
+
+
+
+{% for stock in stocks %}
+  <p>{{ stock.product.name }} - Quantity: {{ stock.quantity }}</p>
+{% endfor %}

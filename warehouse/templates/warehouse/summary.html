@@ -1,0 +1,87 @@
+<!-- your_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Records</title>
+    <style>
+        /* Define your CSS styles here */
+        .styled-table {
+            font-family: '', '', Calibri, 'Trebuchet MS', sans-serif;
+            width: 90%;
+            border-collapse: collapse;
+            margin: 20px; /* Add margin as per your requirement */
+            
+        }
+
+        .highlighted-row {
+            background-color:lightpink
+        }
+    
+        .styled-table th,
+        .styled-table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+    
+        .styled-table th {
+            background-color: #f2f2f2;
+        }
+       
+
+
+
+    </style>
+</head>
+<body>
+    <h1>Your Records</h1>
+
+    
+    
+    
+
+
+    <table class="styled-table">
+        <thead>
+          <tr>
+            
+            <th></th>
+            <th scope="col">Item</th>
+            <th scope="col">Stocks</th>  
+            <th scope="col">Critical</th> 
+            <th scope="col">result</th>            
+            
+
+
+          </tr>
+        </thead>
+        <tbody>
+            
+            {% for record in records %}
+            
+            <tr  {% if record.total_stock <= record.item__critical %} 
+            class="highlighted-row"                   
+            {% endif %}>
+                <td style="width: 80px; text-align: center;"><a href="{% url 'single_list' record.item__id %}"><button>Details</button></a></td>
+                <td>{{ record.item__stockname }}</td>
+                <td><strong>{{ record.total_stock }}</strong></td>  
+                <td>{{ record.item__critical }}</td> 
+                <td>
+                    {% if record.total_stock <= record.item__critical %} 
+                    Re-Order {{ record.difference}}                   
+                    {% endif %}           
+                </td>
+                
+                
+
+                
+            </tr>
+        {% endfor %}
+    
+        </tbody>
+      </table>
+    
+    
+    
+</body>
+</html>

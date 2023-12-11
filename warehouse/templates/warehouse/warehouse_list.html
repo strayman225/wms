@@ -1,0 +1,6 @@
+<!-- templates/warehouse/warehouse_list.html -->
+
+{% for warehouse in warehouses %}
+  <h2>{{ warehouse.name }}</h2>
+  <p>{{ warehouse.location }}</p>
+{% endfor %}
