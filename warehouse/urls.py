@@ -5,6 +5,7 @@ from django.urls import include, path, re_path
 from django.urls import path
 from .views import *
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
 
 urlpatterns = [
 
@@ -21,7 +22,8 @@ urlpatterns = [
     path('itemhistory/<str:pk>', single_record_list, name='single_list'),
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 
-    if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    
+  
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    
