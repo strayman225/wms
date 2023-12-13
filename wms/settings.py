@@ -152,3 +152,4 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # settings.py
 
+LOGIN_REDIRECT_URL = 'index_html'
