@@ -27,6 +27,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'summary_html' %}">Summary</a>
               </li>
+              <li class="nav-item" style="align-self: right">
+                <a class="nav-link" href="{% url 'summary_html' %}">Username</a>
+                {% if user.is_authenticated%}
+                {{user.id}}<a class="nav-link" href="{% url 'summary_html' %}"></a>
+                {% else %}
+                
+                {% endif %}
+
+              </li>
              
             </ul>
           </div>
