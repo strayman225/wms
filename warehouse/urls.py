@@ -20,9 +20,11 @@ urlpatterns = [
     path('list/', record_list , name='list_html'),
     path('summary/', summary_list, name='summary_html'),
     path('itemhistory/<str:pk>', single_record_list, name='single_list'),
+    path('logout/', logout_view, name='logout'),
+    
+      
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
-
-  
+   
 
 ]
 if settings.DEBUG:

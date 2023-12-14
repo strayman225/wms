@@ -5,6 +5,7 @@ from .models import *
 from .forms import *
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 
 
@@ -82,7 +83,10 @@ def summary_list(request):
 
 @login_required
 def index(request):
+
     return render(request, 'warehouse/index.html')
+
+
 
 from django.urls import reverse
 from django.views import View
@@ -115,3 +119,14 @@ def single_record_list(request, pk):
     total_issued = sum(record.qtyout for record in records)
     total_stock = sum(record.qtyIN for record in records) - sum(record.qtyout for record in records)
     return render(request, 'warehouse/list_single.html', {'records': records, 'total_delivered': total_delivered,'total_issued': total_issued,'total_stock': total_stock,'firstrec': firstrec,'lists':lists}) 
+
+
+
+from django.shortcuts import redirect
+
+def logout_view(request):
+    # Use the built-in logout function to log out the user
+    logout(request)
+    
+    # Redirect the user to a different page after logout
+    return redirect('login')  # Replace 'home' with the URL or name of the page you want to redirect to
